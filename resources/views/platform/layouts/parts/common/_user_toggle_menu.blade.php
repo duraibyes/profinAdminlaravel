@@ -2,7 +2,7 @@
     @if( isset(auth()->user()->image) && !empty( auth()->user()->image ) )
         <img alt="user" src="{{ asset('/') . auth()->user()->image }}" />
     @else                    
-        <img alt="user" src="{{ asset('userImage/no_Image.jpg') }}" />
+        <img alt="user" src="{{ asset('assets/logo/favicon.png') }}" width="35" />
     @endif
     
 </div>
@@ -14,9 +14,9 @@
             
             <div class="symbol symbol-50px me-5">
                 @if( isset(auth()->user()->image) && !empty( auth()->user()->image ) )
-                    <img alt="Logo" src="{{ asset('/') . auth()->user()->image }}" />
+                    <img alt="Logo" src="{{ asset('/') . auth()->user()->image }}" width="35" />
                 @else                    
-                    <img alt="Logo" src="{{ asset('userImage/no_Image.jpg') }}" />
+                    <img alt="Logo" src="{{ asset('assets/logo/favicon.png') }}" style="width: 35px;"/>
                 @endif
             </div>
             

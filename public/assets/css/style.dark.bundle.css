@@ -3300,15 +3300,15 @@ textarea.form-control-lg {
 }
 
 .btn-primary {
-  color: #000000;
-  background-color: #3699FF;
-  border-color: #3699FF;
+  color: #fff;
+  background-color: #F38705;
+  border-color: #F38705;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 .btn-primary:hover {
-  color: #000000;
-  background-color: #54a8ff;
-  border-color: #4aa3ff;
+  color: #ffff;
+  background-color: #f49e35;
+  border-color: #f49e35;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #000000;

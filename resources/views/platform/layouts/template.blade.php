@@ -18,12 +18,13 @@
 			<!--begin::Page-->
 			<div class="page d-flex flex-row flex-column-fluid">
 				<!--begin::Aside-->
-				<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+				<div id="kt_aside" class="aside aside-hoverable bg-white" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
 					<!--begin::Brand-->
 					<div class="aside-logo flex-column-auto" id="kt_aside_logo">
 						<!--begin::Logo-->
 						<a href="{{ url('/') }}">
-							<img alt="Logo" src="{{ asset(gSetting('logo')) }}" class="w-100px logo" />
+							<img alt="Logo" src="{{ asset('assets/logo/favicon.png') }}" class="w-40px logo" />
+							<img alt="Logo" src="{{ asset('assets/logo/logoname.png') }}" class="ml-3 w-80px logo" />
 						</a> 
 						<!--end::Logo-->
 						<!--begin::Aside toggler-->

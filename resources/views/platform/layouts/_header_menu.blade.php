@@ -2,7 +2,7 @@
     <!--begin::Menu-->
     <div class="menu-title mt-2">
         <h3 class="mt-5">
-            GBS Systems & Services Private Limited
+            Profin Solutions
         </h3>
     </div>
     <!--end::Menu-->

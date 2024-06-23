@@ -12,7 +12,7 @@
                     id="kt_sign_in_form"  action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="text-center mb-10">
-                        <h1 class="text-dark mb-3">Sign In to <img alt="Logo" src="{{ asset('assets/logo/logo.webp') }}" class="h-20px" /></h1>
+                        <h1 class="text-dark mb-3">Sign In to <img alt="Logo" src="{{ asset('assets/logo/favicon.png') }}" class="h-40px" /> <img alt="Logo" src="{{ asset('assets/logo/logoname.png') }}" class="h-40px" /></h1>
                         <div class="text-gray-400 fw-bold fs-4">
                             <div class="fv-plugins-message-container invalid-feedback">
                                 @error('email')
@@ -32,10 +32,10 @@
                     <div class="fv-row mb-10 fv-plugins-icon-container">
                         <div class="d-flex flex-stack mb-2">
                             <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                            @if (Route::has('password.request'))
+                            {{-- @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}" class="link-primary fs-6 fw-bolder">Forgot
                                     Password ?</a>
-                            @endif
+                            @endif --}}
                         </div>
                         <input class="form-control form-control-lg form-control-solid" type="password"
                             name="password" autocomplete="off">

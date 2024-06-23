@@ -7,7 +7,7 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="shortcut icon" href="{{ asset(gSetting('favicon')) }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/logo/favicon.png') }}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -20,5 +20,4 @@
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     @yield('add_on_css')
-    @include('platform.layouts.parts.common._routeJs')
 </head>

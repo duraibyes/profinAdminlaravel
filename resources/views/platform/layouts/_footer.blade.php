@@ -3,7 +3,7 @@
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted fw-bold me-1">2022©</span>
             
-            <a href="javascript:void(0);"  class="text-gray-800 text-hover-primary">{{ gSetting('copyrights') }}</a>
+            <a href="javascript:void(0);"  class="text-gray-800 text-hover-primary">Webspace</a>
         </div>
     </div>
 </div>

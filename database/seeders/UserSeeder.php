@@ -10,30 +10,10 @@ class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $seededAdminEmail = 'admingbs@yopmail.com';
-        $user = User::where('email', '=', $seededAdminEmail)->first();
-        if ($user === null) {
-            $user = User::create([
-                'name'                          => 'Admin',
-                'email'                         => $seededAdminEmail,
-                'password'                      => Hash::make('password'),
-                'is_super_admin'                => 1
-            ]);
-        }
-
-        // Seed test user 2
-        $user = User::where('email', '=', 'usergbs@yopmail.com')->first();
-        if ($user === null) {
-            $user = User::create([
-                'name'                           => 'User',
-                'email'                          => 'usergbs@yopmail.com',
-                'password'                       => Hash::make('password'),
-            ]);
-        }
+        User::updateOrCreate(['email' => 'admindevprofin@yopmail.com'], ['email' => 'admindevprofin@yopmail.com', 'name' => 'admin', 'is_super_admin' => 'yes', 'password' => Hash::make('12345678')]);
+        User::updateOrCreate(['email' => 'profinadmin@yopmail.com'], ['email' => 'profinadmin@yopmail.com', 'name' => 'admin', 'is_super_admin' => 'no', 'password' => Hash::make('password')]);
     }
 }
