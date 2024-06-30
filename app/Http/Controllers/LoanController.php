@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Loan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use DataTables;
 
 class LoanController extends Controller
 {
     public function index(Request $request)
     {
-        $title = "Brand";
+        $title = "Loans";
         
         if ($request->ajax()) {
-            $data = Loan::select('loans.*');
+            $data = Loan::with('loanCategory');
             $status = $request->get('status');
             $keywords = $request->get('search')['value'];
             $datatables =  Datatables::of($data)
@@ -30,7 +30,18 @@ class LoanController extends Controller
                 ->addIndexColumn()
                
                 ->editColumn('status', function ($row) {
-                    $status = '<a href="javascript:void(0);" class="badge badge-light-'.(($row->status == 'published') ? 'success': 'danger').'" tooltip="Click to '.(($row->status == 'published') ? 'Unpublish' : 'Publish').'" onclick="return commonChangeStatus(' . $row->id . ',\''.(($row->status == 'published') ? 'unpublished': 'published').'\', \'brands\')">'.ucfirst($row->status).'</a>';
+                    $statusOptions = [
+                        'new' => 'New',
+                        'interested' => 'Interested',
+                        'cancelled' => 'Cancelled',
+                        'completed' => 'Completed'
+                    ];
+                    $status = '<select class="form-select" onChange="commonChangeStatus(' . $row->id . ', this.value, \'loans\')">';
+                    foreach ($statusOptions as $value => $label) {
+                        $selected = $row->status === $value ? 'selected' : '';
+                        $status .= "<option value='{$value}' {$selected}>{$label}</option>";
+                    }
+                    $status .= '</select>';
                     return $status;
                 })
                
@@ -38,21 +49,41 @@ class LoanController extends Controller
                     $created_at = Carbon::createFromFormat('Y-m-d H:i:s', $row['created_at'])->format('d-m-Y');
                     return $created_at;
                 })
+                ->addColumn('loan_category', function($row) {
+                    return $row->loanCategory->name ?? '';
+                })
 
-                ->addColumn('action', function ($row) {
-                    $edit_btn = '<a href="javascript:void(0);" onclick="return  openForm(\'brands\',' . $row->id . ')" class="btn btn-icon btn-active-primary btn-light-primary mx-1 w-30px h-30px" > 
-                    <i class="fa fa-edit"></i>
-                </a>';
-                    $del_btn = '<a href="javascript:void(0);" onclick="return commonDelete(' . $row->id . ', \'brands\')" class="btn btn-icon btn-active-danger btn-light-danger mx-1 w-30px h-30px" > 
+                ->addColumn('action', function ($row) {               
+                    $del_btn = '<a href="javascript:void(0);" onclick="return commonDelete(' . $row->id . ', \'loans\')" class="btn btn-icon btn-active-danger btn-light-danger mx-1 w-30px h-30px" > 
                 <i class="fa fa-trash"></i></a>';
 
-                    return $edit_btn . $del_btn;
+                    return $del_btn;
                 })
-                ->rawColumns(['action', 'status', 'brand_logo']);
+                ->rawColumns(['action', 'status', 'icon', 'loan_category']);
             return $datatables->make(true);
         }
         $breadCrum  = array('Loans');
         $title      = 'Loans';
         return view('platform.loans.index', compact('breadCrum', 'title'));
     }
+
+    public function delete(Request $request)
+    {
+        $id         = $request->id;
+        $info       = Loan::find($id);
+        $info->delete();
+        return response()->json(['message'=>"Successfully deleted Loans!",'status'=>1]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $id             = $request->id;
+        $status         = $request->status;
+        $info           = Loan::find($id);
+        $info->status   = $status;
+        $info->update();
+        return response()->json(['message'=>"You changed the Loan status!",'status'=>1]);
+
+    }
+
 }

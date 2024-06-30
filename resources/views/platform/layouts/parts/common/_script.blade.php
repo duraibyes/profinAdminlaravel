@@ -8,6 +8,10 @@
                 'status': "{{ route('loan-category.status') }}",
                 'add': "{{ route('loan-category.add.edit') }}",
             },
+            'loans': {
+                'delete': "{{ route('loans.delete') }}",
+                'status': "{{ route('loans.status') }}",
+            }
         }
     };
 </script>

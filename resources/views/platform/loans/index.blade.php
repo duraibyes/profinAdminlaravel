@@ -49,8 +49,10 @@
                                             data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true"
                                             data-kt-brand-table-filter="order" data-hide-search="true">
                                             <option value="0">All</option>
-                                            <option value="published">Published</option>
-                                            <option value="unpublished">Unpublished</option>
+                                            <option value="new">New</option>
+                                            <option value="interested">Interested</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="completed">Completed</option>
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-end">
@@ -79,7 +81,7 @@
                                 <th> Contact Whatsapp No </th>
                                 <th> Contact Email </th>
                                 <th> Status </th>
-                                <th style="width: 75px;">Action</th>
+                                <th style="width: 30px;">Action</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -94,13 +96,13 @@
     <script src="{{ asset('assets/js/datatable.min.js') }}"></script>
 
     <script>
-        var dtTable = $('#category-table').DataTable({
+        var dtTable = $('#loan-table').DataTable({
 
             processing: true,
             serverSide: true,
             type: 'POST',
             ajax: {
-                "url": "{{ route('loan-category') }}",
+                "url": "{{ route('loans') }}",
                 "data": function(d) {
                     d.status = $('select[name=filter_status]').val();
                 }
@@ -108,13 +110,33 @@
 
             columns: [
                 {
+                    data: 'loan_category',
+                    name: 'loan_category'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                },
+                {
+                    data: 'loan_amount',
+                    name: 'loan_amount',
+                },
+                {
                     data: 'name',
                     name: 'name',
                   
                 },
                 {
-                    data: 'icon',
-                    name: 'icon'
+                    data: 'contact_no',
+                    name: 'contact_no'
+                },
+                {
+                    data: 'whatsapp_no',
+                    name: 'whatsapp_no'
+                },
+                {
+                    data: 'email_id',
+                    name: 'email_id'
                 },
                 {
                     data: 'status',

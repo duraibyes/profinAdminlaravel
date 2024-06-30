@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class LoanCategory extends Model implements Auditable
@@ -18,6 +19,11 @@ class LoanCategory extends Model implements Auditable
     protected $appends = ['icon_url'];
     public function getIconUrlAttribute()
     {
-        return $this->icon ? asset('storage/' . $this->icon) : null;
+
+        $brandLogoPath = 'category/'.$this->icon;
+        $url = Storage::url($brandLogoPath);
+        $path = asset($url);
+
+        return $this->icon ? $path : null;
     }
 }

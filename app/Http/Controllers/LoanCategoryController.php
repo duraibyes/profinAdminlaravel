@@ -99,7 +99,7 @@ class LoanCategoryController extends Controller
             $ins['name']          = $request->category_name;
             $ins['description']   = $request->description;
             $ins['created_by']    = Auth::id();
-            $ins['slug']          = Str::slug($request->name);
+            $ins['slug']          = Str::slug($request->category_name);
             if($request->status == "1")
             {
                 $ins['status']          = 'active';

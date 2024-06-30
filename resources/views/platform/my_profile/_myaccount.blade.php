@@ -25,6 +25,8 @@
                 <input type="text" class="form-control form-control-solid"   name="email" value="{{ $data->email ?? '' }}" readonly />
             </div>
         </div>
+    </div>
+    {{-- <div class="col-md-6">
         <div class="row fv-row mb-7">
             <div class="col-md-3 text-md-end">
                 <label class="fs-6 fw-bold form-label mt-3">
@@ -47,11 +49,11 @@
                 <textarea class="form-control form-control-solid" name="address">{{ $data->address ?? '' }}</textarea>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-1">
 
     </div>
-    <div class="col-md-5">
+    {{-- <div class="col-md-5">
         <div class="col-md-4">
 
             <div class="fv-row mb-7">
@@ -97,15 +99,14 @@
                 </span>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
-
+{{-- 
 <div class="row">
-    <div class="col-md-9 offset-md-3">
-        <div class="separator mb-6"></div>
+    <div class="col-md-12">
         
-        <div class="card-footer py-5 text-center" id="kt_activities_footer">
-            <div class="text-end px-8">
+        <div class="card-footer m-0 text-center" id="kt_activities_footer">
+            <div class="text-end">
                 <button type="reset" class="btn btn-light me-3" id="discard">Discard</button>
                 <button type="submit" class="btn btn-primary" id="form-submit" data-kt-ecommerce-settings-type="submit">
                     <span class="indicator-label">Submit</span>
@@ -115,7 +116,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <script>
  $(document).ready(function () {    
     $('.numberonly').keypress(function (e) {    
