@@ -22,7 +22,7 @@ Route::middleware([CorsMiddleware::class])->group(function () {
     Route::post('send-otp', [AuthController::class, 'sendOTP']);
     Route::post('submit-otp', [AuthController::class, 'submitOtp']);
     
-    Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::middleware('custom.token.auth')->group(function () {
         Route::get('loan-category/{slug}', [LoanController::class, 'getLoanCategoryInfo']);
         Route::post('loan-category', [LoanController::class, 'SubmitLoanInformation']);
     });

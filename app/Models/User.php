@@ -30,6 +30,7 @@ class User extends Authenticatable
         'added_by',
         'country_code',
         'status',
+        'api_token'
     ];
 
     /**
@@ -40,6 +41,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'api_token'
     ];
 
     /**

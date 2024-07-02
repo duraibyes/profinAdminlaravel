@@ -7,8 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
     public function sendOTP( Request $request ) {
         $mobile_no = $request->mobile_no;
         return response()->json( [ 'otp' => '0000', 'mobile_no ' => $mobile_no ] );
@@ -16,11 +15,6 @@ class AuthController extends Controller
     }
 
     public function submitOtp( Request $request ) {
-
-        // $validated = $request->validate([
-        //     'mobile_no' => 'required|numeric|digits:10',
-        //     'otp' => 'required'
-        // ]);
 
         $mobile = $request->mobile_no;
         $otp = $request->otp;
@@ -35,8 +29,12 @@ class AuthController extends Controller
                     'password' => Hash::make( $mobile ),
                 ];
                 $user = User::create( $insertData );
+                $token =  bin2hex( openssl_random_pseudo_bytes( 30 ) );
+                $user->api_token = $token;
+                $user->save();
+
             }
-            $success[ 'token' ] =  $user->createToken( 'auth-token' )->plainTextToken;
+            $success[ 'token' ] = $user->api_token;
             $success[ 'user' ] =  $user;
             $success[ 'message' ] = 'Otp Verified Success';
             $success[ 'error' ] = '0';
